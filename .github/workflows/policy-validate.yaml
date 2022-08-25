@@ -11,10 +11,5 @@ jobs:
     - uses: mondoohq/actions/policy@scottford/refactor-actions
       with:
         service-account-credentials: ${{ secrets.MONDOO_SERVICE_ACCOUNT }}
-        args: validate
-        path: policy/luna-rad-baseline.yml
-    - uses: mondoohq/actions/policy@scottford/refactor-actions
-      with:
-        service-account-credentials: ${{ secrets.MONDOO_SERVICE_ACCOUNT }}
         args: add -f
         path: policy/luna-rad-baseline.yml 
