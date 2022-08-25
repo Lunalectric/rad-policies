@@ -1,0 +1,15 @@
+name: Mondoo Policy Add Luna R&D Baseline
+on:
+  push:
+    paths:
+    - 'policy/luna-rad-baseline.yml'
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: mondoohq/actions/policy@scottford/refactor-actions
+      with:
+        service-account-credentials: ${{ secrets.MONDOO_SERVICE_ACCOUNT }}
+        args: add --force
+        path: policy/luna-rad-baseline.yml

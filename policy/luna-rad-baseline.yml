@@ -1,0 +1,35 @@
+policies:
+  - uid: luna-rad-baseline
+    name: Lunalectric Research and Development Baseline
+    version: "1.0.1"
+    authors:
+      - name: Scott Ford
+        email: scottford@lunalectric.com
+    tags:
+      key: value
+      another-key: another-value
+    specs:
+      - asset_filter:
+          query: platform.family.contains(_ == 'unix')
+        scoring_queries:
+          luna-rad-baseline-score-01:
+        data_queries:
+          luna-rad-baseline-data-01:
+queries:
+  - uid: luna-rad-baseline-score-01
+    title: Ensure SSH MaxAuthTries is set to 4 or less
+    query: sshd.config.params["MaxAuthTries"] <= 4
+    docs:
+      desc: |
+        The MaxAuthTries parameter specifies the maximum number of authentication attempts permitted per connection.
+        When the login failure count reaches half the number, error messages will be written to the syslog file
+        detailing the login failure.
+      audit: Run the `gh-actions -T | grep maxauthtries` command and verify that output MaxAuthTries is 4 or less
+      remediation: |
+        Open your `/etc/ssh/gh-actions_config` and set `MaxAuthTries` to `4`.
+    refs:
+      - title: CIS Distribution Independent Linux
+        url: https://www.cisecurity.org/benchmark/distribution_independent_linux/
+  - uid: luna-rad-baseline-data-01
+    title: Gather SSH config params
+    query: sshd.config.params
