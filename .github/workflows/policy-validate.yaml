@@ -1,4 +1,4 @@
-name: Mondoo Policy Add Luna R&D Baseline
+name: Mondoo Policy Upload
 on:
   push:
     paths:
